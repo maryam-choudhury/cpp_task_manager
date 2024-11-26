@@ -83,7 +83,7 @@ void TaskList::deleteTask(const std::string& description) {
 
     while (current) {
         if (current->description == description) { // Task found
-            if (previous) { // 'previous' pointer to keep track of the node before 'current' pointer
+            if (previous) { // 'previous' pointer will keep track of the node before 'current' pointer
                 previous->next = current->next; // Remove current from the list
             } else {
                 head = current->next; // Update head if deleting first node
@@ -97,4 +97,40 @@ void TaskList::deleteTask(const std::string& description) {
         current = current->next;
     }
     std::cout << "Task not found: " << description << std::endl;
+}
+void TaskList::sortTasks(bool ascending) {
+    if (!head || !head->next) {
+        // If the list is empty or has only one task, no sorting is required
+        return;
+    }
+
+    bool swapped; // Flag to check if any swaps were made during any iteration
+    do {
+        swapped = false;
+        Task* current = head;
+        Task* prev = nullptr;
+
+        while (current && current->next) {
+            Task* next = current->next;
+
+            // Determines if the tasks need to be swapped based on 'ascending' flag
+            bool shouldSwap = ascending ? (current->priority > next->priority) : (current->priority < next->priority);
+
+            if (shouldSwap) {
+                // Swap nodes
+                if (prev) {
+                    prev->next = next;
+                } else {
+                    head = next; // Update head if you are swapping the first two nodes
+                }
+
+                current->next = next->next;
+                next->next = current;
+                swapped = true;
+            }
+
+            prev = shouldSwap ? next : current; // Update prev only if no swap occured!
+            current = current->next;
+        }
+    } while (swapped);
 }

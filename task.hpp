@@ -5,34 +5,66 @@
 #define TASK_HPP
 
 #include <string>
+#include <iostream>
 
-struct Task{ //giving container, so using struct !class
-    std:: string description; //task description
-    int priority; //task priority level
-    Task* next; // Pointer, next task in task linked list
+class Task {
+public:
+    std::string description;
+    int priority;
 
-    //member initializer link constructor syntax:
-    // ClassName(int a, double b, std::string c) : member1(a), member2(b), member3(c) {}
-    Task(const std::string& desc, int prio) : description(desc), priority(prio), next(nullptr) {}
+    Task(std::string desc, int prio) : description(desc), priority(prio) {}
+
+    virtual void display() const {
+        std::cout << description << " (Priority: " << priority << ")";
+    }
+
+    // Update Operator Overload: Overloading the '==' operator for task comparison based on description and priority.
+    bool operator==(const Task& other) const {
+        return description == other.description && priority == other.priority;
+    }
+
+    // Update Operator Overload: Overloading the '<' operator for task comparison based on priority.
+    bool operator<(const Task& other) const {
+        return priority < other.priority;
+    }
+
+    virtual ~Task() = default; // Ensure the base class is destructible
 };
 
-class TaskList{
-    private: //making the head private so it doesn't get mixed up with other heads
-        Task* head; //Pointer to the head aka first task
-    public:
-        TaskList(): head(nullptr) {}
-        void addTask(const std::string& description, int priority); //add new task
-        void viewTasks() const; //const means member variables of this class can't be changed
-        void saveToFile(const std::string& filename) const; // saves tasks to a file
-        void sortTasks(bool ascending); // Sort tasks by priority (ascending if true, descending if false)
-void loadFromFile(const std::string& filename);     // loads tasks from a file
-void deleteTask(const std::string& description); // Delete task by description
+class WorkTask : public Task {
+private:
+    std::string deadline; // Specialized attribute for work-related tasks
 
+public:
+    WorkTask(std::string desc, int prio, std::string dueDate)
+        : Task(desc, prio), deadline(dueDate) {}
 
+    // Update Display 12/8: Display work task with deadline
+    void display() const override {
+        std::cout << "[Work] " << description << " (Priority: " << priority
+                  << ", Deadline: " << deadline << ")";
+    }
 
+    // Update Inheritance: Added a method specific to work tasks to get the deadline.
+    std::string getDeadline() const { return deadline; }
 };
 
+class PersonalTask : public Task {
+private:
+    std::string reminderTime; // Specialized attribute for personal tasks
 
+public:
+    PersonalTask(std::string desc, int prio, std::string reminder)
+        : Task(desc, prio), reminderTime(reminder) {}
 
+    // Update Display 12/8: Display personal task with reminder time
+    void display() const override {
+        std::cout << "[Personal] " << description << " (Priority: " << priority
+                  << ", Reminder: " << reminderTime << ")";
+    }
+
+    // Update Inheritance: Added a method specific to personal tasks for getting the reminder time.
+    std::string getReminderTime() const { return reminderTime; }
+};
 
 #endif

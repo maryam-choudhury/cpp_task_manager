@@ -1,3 +1,4 @@
+//task_manager.cpp
 #include "task.hpp"
 #include <iostream>
 #include <limits>
@@ -49,7 +50,7 @@ int main() {
                 if (description.empty()) { 
                     std::cout << "Description cannot be empty. Please try again." << std::endl; 
                 }
-            } while (description.empty()); // Ensure the user provides a valid non-empty description
+            } while (description.empty()); // User has to provide a valid non-empty description --> test case neccessary 
 
             // Input validation for priority
             do { 
@@ -62,7 +63,7 @@ int main() {
                 if (priority < 1 || priority > 5) { 
                     std::cout << "Invalid priority. Enter a value between 1 and 5." << std::endl; 
                 }
-            } while (priority < 1 || priority > 5); // Checks that priority is within the valid range
+            } while (priority < 1 || priority > 5); // Checking that priority is within the valid range
 
             // Input for task category
             std::cout << "Enter task category (work/personal): ";
@@ -89,7 +90,7 @@ int main() {
             // Delete a task
             std::string description;
             std::cout << "Enter task description to delete: ";
-            std::getline(std::cin, description); // Use std::getline to capture multi-word descriptions
+            std::getline(std::cin, description); // Use std::getline to capture multi-word descriptions (syntax error???)
             taskList.deleteTask(description); // Attempt to delete the task
 
         } else if (choice == 4) {
@@ -115,13 +116,13 @@ int main() {
             taskList.searchTasks(keyword); // Update 12/8: Call searchTasks with the entered keyword
 
         } else if (choice == 8) {
-            // Recommendations for Today based on urgency and priority
+            // Recommendations for given day based on urgency and priority
             taskList.showRecommendations(); // Update 12/8: Added recommendations based on task urgency
         } else if (choice == 9) {
-            // Exit the program
+            // Exit
             taskList.saveToFile(filename); // Saving tasks to the file before exiting
             std::cout << "Exiting Task Manager. Goodbye!" << std::endl;
-            break; // Exit the infinite loop and terminate the program
+            break; // bad choice?
 
         } else {
             // Handle invalid menu input
@@ -129,5 +130,5 @@ int main() {
         }
     }
 
-    return 0; // Program successfully terminated 
+    return 0; //exit!
 }

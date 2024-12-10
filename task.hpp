@@ -1,3 +1,4 @@
+//task.hpp
 // This file will contain Task struc and TaskList class defs
 
 //header guards. Avoid multiple copies of the same header file aka reefinition errors
@@ -18,22 +19,22 @@ public:
         std::cout << description << " (Priority: " << priority << ")";
     }
 
-    // Update Operator Overload: Overloading the '==' operator for task comparison based on description and priority.
+    // Update Operator Overload: Overloading the is equal aka '==' operator for task comparison based on description and priority.
     bool operator==(const Task& other) const {
         return description == other.description && priority == other.priority;
     }
 
-    // Update Operator Overload: Overloading the '<' operator for task comparison based on priority.
+    // Update Operator Overload: Overloading the  less than aka '<' operator for task comparison based on priority.
     bool operator<(const Task& other) const {
         return priority < other.priority;
     }
 
-    virtual ~Task() = default; // Ensure the base class is destructible
+    virtual ~Task() = default; // Ensure the base class is destructible (Remember to add Microsoft destructor page to your bibliogaphy!!!!)
 };
 
 class WorkTask : public Task {
 private:
-    std::string deadline; // Specialized attribute for work-related tasks
+    std::string deadline; // attribute for work tasks
 
 public:
     WorkTask(std::string desc, int prio, std::string dueDate)
@@ -57,7 +58,7 @@ public:
     PersonalTask(std::string desc, int prio, std::string reminder)
         : Task(desc, prio), reminderTime(reminder) {}
 
-    // Update Display 12/8: Display personal task with reminder time
+    // Update Display 12/8: Displaying personal task with reminder time
     void display() const override {
         std::cout << "[Personal] " << description << " (Priority: " << priority
                   << ", Reminder: " << reminderTime << ")";

@@ -1,5 +1,7 @@
+//task_list.cpp
 // This file will contain implementation of TaskList function
 #include "task.hpp"
+#include "task_list.hpp"  // Include the header file where TaskList is declared
 #include <iostream> // Needed for input and output
 #include <fstream> // Needed for file operations
 #include <sstream> // Needed for string parsing 
@@ -50,6 +52,7 @@ void TaskList::loadFromFile(const std::string& filename) {
     std::string category, deadline, reminder;
     std::string line;
 
+//syn error?
     while (std::getline(inFile, line)) {
         std::istringstream iss(line); // Parse each line
         std::getline(iss, description, ','); // Get description up to comma
@@ -84,7 +87,7 @@ void TaskList::deleteTask(const std::string& description) {
 
 void TaskList::sortTasks(bool ascending) {
     std::sort(tasks.begin(), tasks.end(), [ascending](Task* a, Task* b) {
-        return ascending ? (*a < *b) : (*b < *a); // Use overloaded '<' operator for sorting
+        return ascending ? (*a < *b) : (*b < *a); // Use overloaded  greater than aka '<' operator for sorting
     });
 }
 
@@ -98,7 +101,7 @@ void TaskList::searchTasks(const std::string& keyword) const {
         }
     }
     if (!found) {
-        std::cout << "No tasks found with the keyword '" << keyword << "'." << std::endl;
+        std::cout << "No tasks found with the keyword '" << keyword << "'!" << std::endl;
     }
 }
 

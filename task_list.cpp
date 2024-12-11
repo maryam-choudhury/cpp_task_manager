@@ -60,7 +60,7 @@ void TaskList::loadFromFile(const std::string& filename) {
     std::ifstream inFile(filename); // Open file for reading
 
     if (!inFile) {
-        std::cerr << "Error opening file for loading." << std::endl; // When the file can't be opened
+        displayErrorMessage("Error opening file for loading.");
         return;
     }
 
@@ -75,12 +75,30 @@ void TaskList::loadFromFile(const std::string& filename) {
         std::getline(iss, priorityStr, ','); 
         std::getline(iss, timeInfo, ',');
 
-        int priority = std::stoi(priorityStr); // Convert priority to an integer
+        //edge case- check for missing fields
+        if (category.empty() || description.empty() || priorityStr.empty() || timeInfo.empty()) {
+            displayErrorMessage("Missing field in CSV file for this line: " + line);
+            continue; // Skip this task
+        }
+        int priority = 0;
+        // Convert priority to an integer
+        try {
+            priority = std::stoi(priorityStr);
+        } catch (const std::invalid_argument& e) {
+            displayErrorMessage("Invalid priority value: " + priorityStr);
+            continue; // Skip this task and move to the next
+        } catch (const std::out_of_range& e) {
+            displayErrorMessage("Priority out of range: " + priorityStr);
+            continue; // Skip this task and move to the next
+        }
 
         if (category == "work") {
             addTask(new WorkTask(description, priority, timeInfo)); // "timeInfo" holds the deadline
         } else if (category == "personal") {
             addTask(new PersonalTask(description, priority, timeInfo)); // "timeInfo" holds the reminder
+        } else {
+            displayErrorMessage("Unknown task category: " + category);
+            continue; // Skip this task
         }
     }
 

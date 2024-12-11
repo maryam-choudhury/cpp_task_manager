@@ -6,21 +6,8 @@
 #include <algorithm>
 #include <ctime>
 #include "task_list.hpp"
+#include "utils.hpp"
 
-// Update 12/8: Added a new menu option to show task recommendations based on urgency and priority.
-void displayMenu() {
-    std::cout << "Task Manager Menu" << std::endl;
-    std::cout << "1. Add Task" << std::endl;
-    std::cout << "2. View Tasks" << std::endl;
-    std::cout << "3. Delete Task" << std::endl;
-    std::cout << "4. Sort Tasks (Ascending)" << std::endl;
-    std::cout << "5. Sort Tasks (Descending)" << std::endl;
-    std::cout << "6. Save Tasks" << std::endl; // New menu option for saving tasks
-    std::cout << "7. Search Tasks" << std::endl; // Update 12/8: New option for searching tasks
-    std::cout << "8. Recommendations for Today" << std::endl; // Update 12/8: Added option for recommendations
-    std::cout << "9. Exit" << std::endl;       // Updated option number for exiting
-    std::cout << "Choose an option: ";
-}
 
 int main() {
     TaskList taskList; // Create an instance of TaskList
@@ -92,6 +79,7 @@ int main() {
             std::cout << "Enter task description to delete: ";
             std::getline(std::cin, description); // Use std::getline to capture multi-word descriptions (syntax error???)
             taskList.deleteTask(description); // Attempt to delete the task
+            displaySuccessMessage("Task successfully deleted!"); //send to success message
 
         } else if (choice == 4) {
             // Sort tasks in ascending order
@@ -122,11 +110,12 @@ int main() {
             // Exit
             taskList.saveToFile(filename); // Saving tasks to the file before exiting
             std::cout << "Exiting Task Manager. Goodbye!" << std::endl;
+            displaySuccessMessage("Tasks succesfully saved to file. Now exiting Task Manager. Goodbye!");
             break; // bad choice?
 
         } else {
             // Handle invalid menu input
-            std::cout << "Invalid option. Please try again." << std::endl;
+            displayErrorMessage("Invalid option. Please try again.");
         }
     }
 

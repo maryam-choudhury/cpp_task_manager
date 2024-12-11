@@ -1,6 +1,5 @@
 # **Bibliography**
-
-## **task_manager.cpp**
+These are sources I learned from while writing this final project!
 
 ### **How to Write and Read a File in C++**
 - [W3Schools: How to Write and Read a File in C++](https://www.w3schools.com/cpp/cpp_files.asp)
@@ -22,6 +21,9 @@
 ---
 
 ## **task.hpp**
+- [GeeksforGeeks: Vectors in C++ STL](https://www.geeksforgeeks.org/vector-in-cpp-stl/)
+
+---
 
 ### **Header Guards**
 - [GeeksforGeeks: Header Guard in C++](https://www.geeksforgeeks.org/header-guard-in-c/)
@@ -30,12 +32,22 @@
 ---
 
 ## **task_list.cpp**
+- [GeeksforGeeks: Vectors in C++ STL](https://www.geeksforgeeks.org/vector-in-cpp-stl/)
+
+---
 
 ### **File Output**
 - [GeeksforGeeks: File Handling in C++ Classes](https://www.geeksforgeeks.org/file-handling-c-classes/)
 
 ### **String Streams**
 - [GeeksforGeeks: Stringstream C++ Applications](https://www.geeksforgeeks.org/stringstream-c-applications/)
+
+### **Time Comparisons**
+- [ExpertsMind: Program to Compare Two Dates Given by the User](https://www.expertsmind.com/questions/program-to-compare-the-two-dates-given-by-the-user-30119952.aspx)
+- [UNIX.com: How to Compare Dates in C/C++](https://www.unix.com/programming/30563-how-compare-dates-c-c.html)
+- [GeeksforGeeks: Vector push_back in C++ STL](https://www.geeksforgeeks.org/vector-push-back-cpp-stl/)
+- [GeeksforGeeks: dynamic_cast in C++](https://www.geeksforgeeks.org/dynamic-_cast-in-cpp/)
+- [Javatpoint: C++ Date and Time](https://www.javatpoint.com/cpp-date-and-time)
 
 ### **Linked Lists**
 - [GeeksforGeeks: C++ Linked List](https://www.geeksforgeeks.org/cpp-linked-list/)
@@ -66,6 +78,16 @@
 
 ## **task_manager.cpp**
 
+(No specific resources)
+
+---
+
+## **utils.cpp**
+(No specific resources)
+
+---
+
+## **utils.hpp**
 (No specific resources)
 
 ---

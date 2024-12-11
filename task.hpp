@@ -16,7 +16,10 @@ public:
     Task(std::string desc, int prio) : description(desc), priority(prio) {}
 
     virtual void display() const {
-        std::cout << description << " (Priority: " << priority << ")";
+        //12-10-24 Update: Improved formatting
+        //std::cout << std::string(40, '-') << std::endl; 
+        std::cout << "Task: " << description << "\nPriority: " << priority << std::endl;
+        //std::cout << std::string(40, '-') << std::endl; 
     }
 
     // Update Operator Overload: Overloading the is equal aka '==' operator for task comparison based on description and priority.
@@ -42,8 +45,10 @@ public:
 
     // Update Display 12/8: Display work task with deadline
     void display() const override {
-        std::cout << "[Work] " << description << " (Priority: " << priority
-                  << ", Deadline: " << deadline << ")";
+        //std::cout << std::string(40, '-') << std::endl; 
+        std::cout << "[Work Task] " << description << "\nPriority: " << priority 
+                  << "\nDeadline: " << deadline << std::endl;
+        //std::cout << std::string(40, '-') << std::endl; 
     }
 
     // Update Inheritance: Added a method specific to work tasks to get the deadline.
@@ -60,8 +65,10 @@ public:
 
     // Update Display 12/8: Displaying personal task with reminder time
     void display() const override {
-        std::cout << "[Personal] " << description << " (Priority: " << priority
-                  << ", Reminder: " << reminderTime << ")";
+        //std::cout << std::string(40, '-') << std::endl; 
+        std::cout << "[Personal Task] " << description << "\nPriority: " << priority 
+                  << "\nReminder: " << reminderTime << std::endl;
+       //std::cout << std::string(40, '-') << std::endl; 
     }
 
     // Update Inheritance: Added a method specific to personal tasks for getting the reminder time.

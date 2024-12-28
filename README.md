@@ -28,7 +28,7 @@ This Task Manager program is an introductory project I developed while learning 
 
 ---
 
-# Key Classes
+## Key Classes
 1. **Task**: Base class for all tasks with core attributes like description and priority.
    - Methods: `display()`, `operator==`, `operator<`.
 
